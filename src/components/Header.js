@@ -1,7 +1,12 @@
 import React from "react";
-import image from "../components/im.jfif";
+import PropTypes from "prop-types";
+
 const Header = (props) => {
-  const { name } = props;
+  const { name, show, children } = props;
+  const handleName = (e) => {
+    e.preventDefault();
+    show(name);
+  };
   return (
     <>
       <header id="header">
@@ -13,7 +18,7 @@ const Header = (props) => {
           <h2>
             I'm a passionate <span>Web Developper</span> from Tunisia
           </h2>
-          <img scr={image} alt="imag" />
+          {children}
 
           <nav id="navbar" class="navbar">
             <ul>
@@ -33,6 +38,11 @@ const Header = (props) => {
                   Contact
                 </a>
               </li>
+              <li>
+                <a class="nav-link" href="#!" onClick={handleName}>
+                  UserName
+                </a>
+              </li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
           </nav>
@@ -41,10 +51,10 @@ const Header = (props) => {
             <a href="#" class="twitter">
               <i class="bi bi-twitter"></i>
             </a>
-            <a href="#" class="facebook">
+            <a href="!#" class="facebook">
               <i class="bi bi-facebook"></i>
             </a>
-            <a href="#" class="instagram">
+            <a href="!#" class="instagram">
               <i class="bi bi-instagram"></i>
             </a>
             <a href="#" class="linkedin">
@@ -55,6 +65,14 @@ const Header = (props) => {
       </header>
     </>
   );
+};
+Header.defaultProps = {
+  name: "jadla",
+};
+
+Header.propTypes = {
+  name: PropTypes.string.isRequired,
+  show: PropTypes.func.isRequired,
 };
 
 export default Header;
